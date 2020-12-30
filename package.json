@@ -1,5 +1,5 @@
 {
-  "name": "remote-phone-activity",
+  "name": "remote-read-sms-calllist-while-on-charge",
   "main": "app.js",
   "version": "1.0.0",
   "author": "roniavishek@gmail.com",
@@ -20,11 +20,13 @@
   "homepage": "https://github.com/NativeScript/nativescript-app-templates",
   "dependencies": {
     "@nativescript/core": "~7.0.0",
+    "@nativescript/firebase": "^11.1.3",
     "@nativescript/theme": "~2.3.0",
     "nativescript-couchbase-plugin": "^0.9.6",
     "nativescript-permissions": "^1.3.11",
     "nativescript-push-notifications": "^1.1.6",
-    "nativescript-sms-inbox": "^2.1.0"
+    "nativescript-sms-inbox": "^2.1.0",
+    "tns-core-modules": "^6.5.24"
   },
   "devDependencies": {
     "@nativescript/android": "7.0.1",

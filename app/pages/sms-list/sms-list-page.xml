@@ -4,12 +4,12 @@ of which NativeScript renders with a platform-specific iOS or Android native con
 You can find a full list of user interface components you can use in your app at
 https://docs.nativescript.org/ui/components.
 -->
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" loaded="onPageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" loaded="onPageLoaded" actionBarHidden="true">
     <!--
     The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
     http://docs.nativescript.org/ui/action-bar
     -->
-    <ActionBar title="Remote sms monitor" icon=""></ActionBar>
+    <!-- <ActionBar title="Remote sms monitor" icon=""></ActionBar> -->
 
     <!--
     The StackLayout stacks UI components on the screen—either vertically or horizontally.
@@ -22,10 +22,24 @@ https://docs.nativescript.org/ui/components.
     The theme also provides a set of helper class names such as p-20, h1, h2, and text-center to enhance styling.
     You can learn more about the NativeScript core theme at https://github.com/nativescript/theme
     -->
+    <GridLayout rows="*" columns="*">
+        <ListView items="{{ smsList }}" row="0" class="list-group" 
+        separatorColor="orangered">
+            <ListView.itemTemplate>
+                <StackLayout class="list-group-item">
+                <FlexboxLayout width="auto" height="auto">
+                    <Label text="{{ fromNumber }}" class="h2" flexGrow="1" height="auto" />
+                    <Label text="{{ date_str }}" class="h3 text-right" flexGrow="1" height="auto" />
+                </FlexboxLayout>
+                <Label text="{{ message }}" textWrap="true" class="h3" />
+                </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
 
-    <StackLayout class="p-20">
+    <!-- <StackLayout class="p-20">
         <Label text="Tap the button" class="h1 text-center"/>
         <Button text="TAP" tap="{{ onTap }}" class="-primary"/>
         <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>
-    </StackLayout>
+    </StackLayout> -->
 </Page>

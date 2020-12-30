@@ -1,0 +1,33 @@
+<Page>
+<ActionBar title="Remote sms monitor" class="action-bar">
+        <!-- <ActionItem>
+            <Label text="Drawer" class="h3 text-center" />
+        </ActionItem> -->
+</ActionBar>
+<BottomNavigation id="bottomNav" automationText="tabNavigation" 
+                  selectedIndex="0">
+    <TabStrip>
+        <TabStripItem>
+            <Image src="font://&#xf03a;" class="fas"></Image>
+            <Label text="SMS List"></Label>
+        </TabStripItem>
+        <TabStripItem>
+            <Image src="font://&#xf2d2;" class="fas"></Image>
+            <Label text="Call Log"></Label>
+        </TabStripItem>
+        <TabStripItem>
+            <Image src="font://&#xf013;" class="fas"></Image>
+            <Label text="Settings"></Label>
+        </TabStripItem>
+    </TabStrip>
+    <TabContentItem>
+        <Frame id="smsListPage" defaultPage="pages/sms-list/sms-list-page"></Frame>
+    </TabContentItem>
+    <TabContentItem>
+        <Frame id="callLogPage" defaultPage="pages/call-log/call-log"></Frame>
+    </TabContentItem>
+    <TabContentItem>
+        <Frame id="settingsPage" defaultPage="pages/settings/settings-page"></Frame>
+    </TabContentItem>
+</BottomNavigation>
+</Page>

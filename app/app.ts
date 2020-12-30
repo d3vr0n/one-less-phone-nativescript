@@ -6,6 +6,8 @@ purpose of the file is to pass control to the app’s first module.
 
 import { Application } from '@nativescript/core';
 
+require("@nativescript/firebase");
+// Application.setCssFileName("app.css");
 Application.run({ moduleName: 'app-root' });
 
 /*

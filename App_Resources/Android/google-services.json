@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "553720450462",
+    "firebase_url": "https://one-less-phone-default-rtdb.firebaseio.com",
+    "project_id": "one-less-phone",
+    "storage_bucket": "one-less-phone.appspot.com"    
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553720450462:android:67fa2e6532bd1417315a8f",
+        "android_client_info": {
+          "package_name": "io.onelessphone.remotecallsmsreader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553720450462-thki50ig0m4blqs3i9ln7mlqmp4po5fe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.onelessphone.remotecallsmsreader",
+            "certificate_hash": "484ff5e8931714ef9a9d95edc5f2c5355e3e5f58"
+          }
+        },
+        {
+          "client_id": "553720450462-lsd2dukcb29ck3gbm5uuf3e97a8blal7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6XrVcvx-7tWIxy0BmmC4YO4Ly0aI3YFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553720450462-lsd2dukcb29ck3gbm5uuf3e97a8blal7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

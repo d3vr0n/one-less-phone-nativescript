@@ -1,0 +1,7 @@
+<Page class="page" actionBarHidden="true">
+    <!-- <ActionBar title="Settings" class="action-bar"></ActionBar> -->
+
+    <StackLayout class="home-panel">
+        <Button class="btn btn-primary" text="Settings List here" />
+    </StackLayout>
+</Page>

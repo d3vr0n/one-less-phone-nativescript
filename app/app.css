@@ -23,3 +23,30 @@ The following CSS rule changes the font size of all Buttons that have the
 Button.-primary {
     font-size: 18;
 }
+
+.middle {
+    vertical-align: middle;
+}
+
+.googleLogin {
+    height: 80;
+    font-size: 20;
+    background-color: rgb(9, 81, 175);
+    color: white;
+    font-weight: bold;
+}
+
+.far {
+    font-family: "Font Awesome 5 Free", fa-regular-400;
+    /* font-weight: 400;  */
+}
+
+.fab {
+    font-family: "Font Awesome 5 Brands", fa-brands-400;
+    font-weight: 400; 
+}
+
+.fas {
+    font-family: "Font Awesome 5 Free", fa-solid-900;
+    /* font-weight: 900;  */
+}

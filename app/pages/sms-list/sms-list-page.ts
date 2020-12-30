@@ -5,7 +5,9 @@ logic, and to set up your page’s data binding.
 */
 
 import { EventData, Page } from '@nativescript/core';
-import { MainPageModel } from './main-view-model';
+import { SmsListPageModel } from './sms-list-view-model';
+import { ItemEventData, ListView } from "tns-core-modules/ui/list-view";
+import { GridLayout, ItemSpec } from "tns-core-modules/ui/layouts/grid-layout";
 
 const firebaseWebApi = require("@nativescript/firebase/app");
 
@@ -29,9 +31,9 @@ export function navigatingTo(args: EventData) {
     You can learn more about data binding in NativeScript at
     https://docs.nativescript.org/core-concepts/data-binding.
     */
-    page.bindingContext = new MainPageModel();
+    page.bindingContext = new SmsListPageModel();
 
-    firebaseWebApi.initializeApp();
+    // firebaseWebApi.initializeApp();
 }
 
 export function onPageLoaded(args:EventData) {

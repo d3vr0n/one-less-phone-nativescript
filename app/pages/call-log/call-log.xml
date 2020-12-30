@@ -1,0 +1,7 @@
+<Page class="page" actionBarHidden="true">
+    <!-- <ActionBar title="Call Log" class="action-bar"></ActionBar> -->
+
+    <StackLayout class="home-panel">
+        <Button class="btn btn-primary" text="Call Log List here" />
+    </StackLayout>
+</Page>

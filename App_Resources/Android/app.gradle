@@ -11,10 +11,13 @@
 
 android {
   defaultConfig {
-    minSdkVersion 17
+    minSdkVersion 19
     generatedDensities = []
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"
+  }
+  project.ext {
+    googlePlayServicesVersion = "+"
   }
 }
