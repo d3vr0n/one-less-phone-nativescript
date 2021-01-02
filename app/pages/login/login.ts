@@ -14,10 +14,10 @@ export function pageLoaded(args: EventData) {
     let dbSvc = new DBService();
     if(dbSvc.getUser().length > 0){
     
-        // page.frame.navigate({
-        //     moduleName: 'home-root',
-        //     clearHistory: true
-        // });
+        page.frame.navigate({
+            moduleName: 'home-root',
+            clearHistory: true
+        });
         
     }
 

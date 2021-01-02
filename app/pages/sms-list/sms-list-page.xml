@@ -4,7 +4,8 @@ of which NativeScript renders with a platform-specific iOS or Android native con
 You can find a full list of user interface components you can use in your app at
 https://docs.nativescript.org/ui/components.
 -->
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" loaded="onPageLoaded" actionBarHidden="true">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" loaded="onPageLoaded" actionBarHidden="true"
+    xmlns:PullRefresh="@nstudio/nativescript-pulltorefresh">
     <!--
     The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
     http://docs.nativescript.org/ui/action-bar
@@ -23,18 +24,20 @@ https://docs.nativescript.org/ui/components.
     You can learn more about the NativeScript core theme at https://github.com/nativescript/theme
     -->
     <GridLayout rows="*" columns="*">
-        <ListView items="{{ smsList }}" row="0" class="list-group" 
-        separatorColor="orangered">
-            <ListView.itemTemplate>
-                <StackLayout class="list-group-item">
-                <FlexboxLayout width="auto" height="auto">
-                    <Label text="{{ fromNumber }}" class="h2" flexGrow="1" height="auto" />
-                    <Label text="{{ date_str }}" class="h3 text-right" flexGrow="1" height="auto" />
-                </FlexboxLayout>
-                <Label text="{{ message }}" textWrap="true" class="h3" />
-                </StackLayout>
-            </ListView.itemTemplate>
-        </ListView>
+        <PullRefresh:PullToRefresh refresh="refreshList" indicatorFillColor="#fff000" indicatorColor="#3489db">
+            <ListView items="{{ smsList }}" row="0" class="list-group" 
+            separatorColor="orangered">
+                <ListView.itemTemplate>
+                    <StackLayout class="list-group-item">
+                    <FlexboxLayout width="auto" height="auto">
+                        <Label text="{{ fromNumber }}" class="h2" flexGrow="1" height="auto" />
+                        <Label text="{{ date_str }}" class="h3 text-right" flexGrow="1" height="auto" />
+                    </FlexboxLayout>
+                    <Label text="{{ message }}" textWrap="true" class="h3" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </PullRefresh:PullToRefresh>
     </GridLayout>
 
     <!-- <StackLayout class="p-20">

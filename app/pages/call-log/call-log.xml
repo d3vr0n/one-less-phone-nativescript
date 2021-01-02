@@ -1,7 +1,21 @@
-<Page class="page" actionBarHidden="true">
+<Page class="page" actionBarHidden="true" loaded="onPageLoaded"
+    xmlns:PullRefresh="@nstudio/nativescript-pulltorefresh">
     <!-- <ActionBar title="Call Log" class="action-bar"></ActionBar> -->
 
-    <StackLayout class="home-panel">
-        <Button class="btn btn-primary" text="Call Log List here" />
-    </StackLayout>
+    <GridLayout rows="*" columns="*">
+        <PullRefresh:PullToRefresh refresh="refreshList" indicatorFillColor="#fff000" indicatorColor="#3489db">
+            <ListView items="{{ smsList }}" row="0" class="list-group" 
+            separatorColor="orangered">
+                <ListView.itemTemplate>
+                    <StackLayout class="list-group-item">
+                    <FlexboxLayout width="auto" height="auto">
+                        <Label text="{{ fromNumber }}" class="h2" flexGrow="1" height="auto" />
+                        <Label text="{{ date_str }}" class="h3 text-right" flexGrow="1" height="auto" />
+                    </FlexboxLayout>
+                    <Label text="{{ message }}" textWrap="true" class="h3" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </PullRefresh:PullToRefresh>
+    </GridLayout>
 </Page>

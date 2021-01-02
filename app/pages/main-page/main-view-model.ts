@@ -6,7 +6,6 @@ import * as permissions from 'nativescript-permissions';
 export class MainPageModel extends Observable {
     private _counter: number;
     private _message: string;
-    private _smsList : Array<any>;
 
     constructor() {
         super();
@@ -17,15 +16,6 @@ export class MainPageModel extends Observable {
         // Initialize default values.
         this._counter = 42;
         this.updateMessage();
-    }
-
-    get smsList() {
-        return this._smsList;
-    }
-
-    set smsList(value: any) {        
-        this._smsList = value;
-        this.notifyPropertyChange('smsList', value);        
     }
 
     get message(): string {
