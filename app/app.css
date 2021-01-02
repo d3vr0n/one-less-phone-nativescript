@@ -50,3 +50,20 @@ Button.-primary {
     font-family: "Font Awesome 5 Free", fa-solid-900;
     /* font-weight: 900;  */
 }
+
+.missed-call {
+    color: red;
+    
+}
+.rotate-45 {
+    transform: rotate(45);
+}
+.rotate-135 {
+    transform: rotate(135);
+}
+.outgoing-call {
+    color: yellow;
+}
+.incoming-call {
+    color: lightgreen;
+}

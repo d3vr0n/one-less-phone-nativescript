@@ -5,12 +5,11 @@ logic, and to set up your page’s data binding.
 */
 
 import { EventData, Page } from '@nativescript/core';
-import { SmsListPageModel } from './sms-list-view-model';
-import { ItemEventData, ListView } from "tns-core-modules/ui/list-view";
-import { GridLayout, ItemSpec } from "tns-core-modules/ui/layouts/grid-layout";
+import { SmsListPageModel } from './sms-list-view-model.android';
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
 import { firebase, firestore } from '@nativescript/firebase';
 import { SMS } from '~/shared/SMS.interface';
+import { isAndroid } from 'tns-core-modules/platform';
 
 const firebaseWebApi = require("@nativescript/firebase/app");
 
@@ -36,12 +35,11 @@ export function navigatingTo(args: EventData) {
     You can learn more about data binding in NativeScript at
     https://docs.nativescript.org/core-concepts/data-binding.
     */
-    page.bindingContext = new SmsListPageModel();
+    if(isAndroid) {
+        page.bindingContext = new SmsListPageModel();
+    }
 
     firebaseWebApi.initializeApp();
-
-    calculateandPushMessages();
-
     
 }
 
@@ -73,7 +71,7 @@ function calculateandPushMessages() {
                 // adding +1 would eliminate last sms getting entered again.
                 page.bindingContext.readSmsesAfterDate(+_lastTimestamp + 1).then(smses =>{
                     const _filteredsmses = smses.filter(sms => {
-                        return querySnapshot.docs.findIndex(doc => (<SMS>(<any>doc.data())).id === sms.id) === -1;
+                        return querySnapshot.docs.findIndex(doc => (<SMS>(<any>doc.data())).id === sms.id && +(<SMS>(<any>doc.data())).date === +sms.date) === -1;
                     });
                     _filteredsmses.forEach(sms => {
                         firestore.add(`user/${data.uid}/sms`, sms).catch(err => {
@@ -91,7 +89,9 @@ function calculateandPushMessages() {
 
 export function onPageLoaded(args:EventData) {
     page = <Page>args.object;
-    console.log('>>> page loaded called');
+    console.log('>>> smslist page loaded called');
+
+    calculateandPushMessages();
 }
 
 export function refreshList(args:EventData) {

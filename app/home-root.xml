@@ -5,7 +5,7 @@
         </ActionItem> -->
 </ActionBar>
 <BottomNavigation id="bottomNav" automationText="tabNavigation" 
-                  selectedIndex="0">
+                  selectedIndex="1">
     <TabStrip>
         <TabStripItem>
             <Image src="font://&#xf03a;" class="fas"></Image>

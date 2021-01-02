@@ -1,18 +1,34 @@
-<Page class="page" actionBarHidden="true" loaded="onPageLoaded"
+<Page class="page" actionBarHidden="true" loaded="onPageLoaded" unloaded="onUnloaded"
     xmlns:PullRefresh="@nstudio/nativescript-pulltorefresh">
     <!-- <ActionBar title="Call Log" class="action-bar"></ActionBar> -->
-
     <GridLayout rows="*" columns="*">
         <PullRefresh:PullToRefresh refresh="refreshList" indicatorFillColor="#fff000" indicatorColor="#3489db">
-            <ListView items="{{ smsList }}" row="0" class="list-group" 
+            <ListView items="{{ callList }}" row="0" class="list-group" 
             separatorColor="orangered">
                 <ListView.itemTemplate>
                     <StackLayout class="list-group-item">
                     <FlexboxLayout width="auto" height="auto">
-                        <Label text="{{ fromNumber }}" class="h2" flexGrow="1" height="auto" />
+                        <Label text="{{ (name || number) + (!!label ? ' - ' + label : '') }}" class="h2" flexGrow="1" height="auto" />
                         <Label text="{{ date_str }}" class="h3 text-right" flexGrow="1" height="auto" />
                     </FlexboxLayout>
-                    <Label text="{{ message }}" textWrap="true" class="h3" />
+                    <FlexboxLayout width="auto" height="auto">
+                        <Label text="{{ duration + ' sec' }}" textWrap="true" class="h3"  />
+                        <StackLayout orientation="horizontal" visibility="{{ (type === 3) ? 'visible' : 'collapsed' }}">
+                            <Image src="font://&#xf309;" height="15" class="fas missed-call rotate-45" marginLeft="15"></Image>
+                            <Image src="font://&#xf095;" height="15" class="fas missed-call" marginLeft="5"></Image>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" visibility="{{ (type === 2) ? 'visible' : 'collapsed' }}">
+                            <Image src="font://&#xf309;" height="15" class="fas outgoing-call rotate-135" marginLeft="15"></Image>
+                            <Image src="font://&#xf095;" height="15" class="fas outgoing-call" marginLeft="5"></Image>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" visibility="{{ (type === 1) ? 'visible' : 'collapsed' }}">
+                            <Image src="font://&#xf309;" height="15" class="fas incoming-call rotate-45" marginLeft="15"></Image>
+                            <Image src="font://&#xf095;" height="15" class="fas incoming-call" marginLeft="5"></Image>
+                        </StackLayout>                        
+                        <FlexboxLayout width="auto" height="auto" flexGrow="1">
+                            
+                        </FlexboxLayout>
+                    </FlexboxLayout>
                     </StackLayout>
                 </ListView.itemTemplate>
             </ListView>
