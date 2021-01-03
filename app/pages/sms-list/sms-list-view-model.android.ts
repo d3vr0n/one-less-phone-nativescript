@@ -10,17 +10,15 @@ export class SmsListPageModel extends Observable {
     constructor() {
         super();
 
-        permissions.requestPermission(android.Manifest.permission.READ_SMS,
-            "RM App needs permission to read your sms messages").then(() => {
-                this.readSmses();
-            });
-
+        if(permissions.hasPermissions([android.Manifest.permission.READ_SMS])) {
+            this.readSmses();
+        }
     }
 
     public readSmses() {
         return new Promise((resolve,reject) => {
             TNSInbox.getInboxesAfterDate(new Date().getTime() - (7 * 24 * 3600 * 1000),{ max: 100 }).then((res) => {
-                console.log(JSON.stringify(res));
+                console.log('Reading smses...'); // JSON.stringify(res));
                 let _smses = [];
                 res.data?.forEach((item:SMS) => {
                     let sms = {...item, date_str: ''};

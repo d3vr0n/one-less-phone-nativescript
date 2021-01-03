@@ -7,8 +7,7 @@ logic, and to set up your page’s data binding.
 import { EventData, Page } from '@nativescript/core';
 import { SmsListPageModel } from './sms-list-view-model.android';
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
-import { firebase, firestore } from '@nativescript/firebase';
-import { SMS } from '~/shared/SMS.interface';
+import * as smsSyncSvc from '~/services/sms-sync.service';
 import { isAndroid } from 'tns-core-modules/platform';
 
 const firebaseWebApi = require("@nativescript/firebase/app");
@@ -43,55 +42,13 @@ export function navigatingTo(args: EventData) {
     
 }
 
-function calculateandPushMessages() {
-    firebase.getCurrentUser().then((data:firebase.User) => {
-        console.log('firebase.getCurrentUser success <<<<')
-        console.log(data);
-        // let batch = firestore.batch();
-        let _datapresent =  false; let _lastTimestamp = 0;
-        firestore.collection(`user/${data.uid}/sms`).get().then((querySnapshot:firestore.QuerySnapshot) => {
-            querySnapshot.docs.length > 0 ? _datapresent = true : _datapresent = false;
-            querySnapshot.docs.every(doc => {
-                if(doc.exists && +(<SMS>(<any>doc.data())).date > _lastTimestamp) {
-                    _lastTimestamp = +(<any>doc.data()).date;
-                }
-                return true;
-            });
-            console.log(`>> last timestamp >> ${_lastTimestamp}`);
 
-            if(!_datapresent) {
-                console.log('>> data not present...')
-                page.bindingContext.smsList.forEach(sms => {
-                    firestore.add(`user/${data.uid}/sms`, sms).catch(err => {
-                        console.error(`firestore document add failed.`);
-                    });
-                });
-                
-            } else {
-                // adding +1 would eliminate last sms getting entered again.
-                page.bindingContext.readSmsesAfterDate(+_lastTimestamp + 1).then(smses =>{
-                    const _filteredsmses = smses.filter(sms => {
-                        return querySnapshot.docs.findIndex(doc => (<SMS>(<any>doc.data())).id === sms.id && +(<SMS>(<any>doc.data())).date === +sms.date) === -1;
-                    });
-                    _filteredsmses.forEach(sms => {
-                        firestore.add(`user/${data.uid}/sms`, sms).catch(err => {
-                            console.error(`firestore document add failed.`);
-                        });
-                    });
-                });
-            }
-
-        });
-
-        
-    });
-}
 
 export function onPageLoaded(args:EventData) {
     page = <Page>args.object;
     console.log('>>> smslist page loaded called');
 
-    calculateandPushMessages();
+    smsSyncSvc.calculateandPushMessages();
 }
 
 export function refreshList(args:EventData) {
@@ -103,7 +60,7 @@ export function refreshList(args:EventData) {
       (resp) => {
         console.log('>>> refreshlist then');
         pullRefresh.refreshing = false;
-        calculateandPushMessages();
+        smsSyncSvc.calculateandPushMessages();
       },
       (err) => {
         pullRefresh.refreshing = false;

@@ -21,8 +21,8 @@ export class LoginModel extends Observable {
             }
         }).then(
             result => {
-                console.log("Google login OK: " + JSON.stringify(result.additionalUserInfo));
-                console.log("Google login OK, photoURL: " + result.photoURL);
+                // console.log("Google login OK: " + JSON.stringify(result.additionalUserInfo));
+                // console.log("Google login OK, photoURL: " + result.photoURL);
                 // alert({
                 //     title: "Login OK",
                 //     message: JSON.stringify(result),

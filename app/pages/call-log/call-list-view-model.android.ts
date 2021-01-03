@@ -24,28 +24,16 @@ export class CallListPageModel extends Observable {
         //             this.callList = data?.data;
         //         });
         //     });
-        permissions.requestPermissions([android.Manifest.permission.READ_CALL_LOG,android.Manifest.permission.READ_PHONE_STATE],
-            "One-less Phone App needs permission to read your call logs").then(() => {
-                this.readCallLogs().then((data: any) => {
-                    this.callList = data?.data;
-                });
-                if (isAndroid) {
-                    // use tns-platform-dclarations to access native APIs (e.g. android.content.Intent)
-                    let receiverCallback = (androidContext, intent) => {
-                        const level = intent.getIntExtra(android.os.BatteryManager.EXTRA_LEVEL, -1);
-                        const scale = intent.getIntExtra(android.os.BatteryManager.EXTRA_SCALE, -1);
-                        const percent = (level / scale) * 100.0;
-                        this.set("batteryLife", percent.toString());
-                    };
-                
-                    appModule.android.registerBroadcastReceiver(
-                        //android.content.Intent.ACTION_BATTERY_CHANGED,
-                        android.content.Intent.ACTION_CALL,
-                        receiverCallback
-                    );
-                }
-            });
+        
 
+    }
+
+    public init() {
+        if(permissions.hasPermissions([android.Manifest.permission.READ_CALL_LOG,android.Manifest.permission.READ_PHONE_STATE])) {
+            this.readCallLogs().then((data: any) => {
+                this.callList = data?.data;
+            });
+        }
     }
 
     public readCallLogs() {

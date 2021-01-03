@@ -19,6 +19,7 @@ module.exports = env => {
     appComponents.push(...[
         "@nativescript/core/ui/frame",
         "@nativescript/core/ui/frame/activity",
+        resolve(__dirname, 'app/shared/sms-broadcast.receiver.android')
     ]);
 
     const platform = env && (env.android && "android" || env.ios && "ios" || env.platform);

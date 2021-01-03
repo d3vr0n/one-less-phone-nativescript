@@ -16,6 +16,7 @@ export function onPageLoaded(args:EventData) {
     firebaseWebApi.initializeApp();
     if(isAndroid) {
         page.bindingContext = new CallListPageModel();
+        page.bindingContext.init();
     }
 
     calculateandPushCallLogs();
@@ -45,7 +46,7 @@ export function onUnloaded() {
 function calculateandPushCallLogs() {
     firebase.getCurrentUser().then((data:firebase.User) => {
         console.log('firebase.getCurrentUser success <<<<')
-        console.log(data);
+        //console.log(data);
         // let batch = firestore.batch();
         const _firestoreCallList = [];
         firestore.collection(`user/${data.uid}/calllog`).get().then((querySnapshot:firestore.QuerySnapshot) => {

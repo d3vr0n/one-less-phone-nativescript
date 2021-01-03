@@ -1,12 +1,24 @@
 import { EventData, Page } from "@nativescript/core";
 import { DBService } from "~/services/db.service";
-
+import * as permissions from 'nativescript-permissions';
 import { LoginModel } from "./login-model";
 
 var page: Page;
 
 export function pageLoaded(args: EventData) {
     console.log("login page loaded>>> ");
+    permissions.requestPermissions([android.Manifest.permission.READ_SMS,android.Manifest.permission.RECEIVE_SMS],
+        "One-less Phone App needs permission to read your sms messages").then(res => {
+            alert(JSON.stringify(res));
+        }, err => alert(JSON.stringify(err)));
+    permissions.requestPermissions([android.Manifest.permission.READ_CALL_LOG,android.Manifest.permission.READ_PHONE_STATE],
+        "One-less Phone App needs permission to read your call logs").then(() => {
+            this.readCallLogs().then((data: any) => {
+                this.callList = data?.data;
+            });
+            
+        });
+
     page = <Page>args.object;
     page.bindingContext = new LoginModel();
 
