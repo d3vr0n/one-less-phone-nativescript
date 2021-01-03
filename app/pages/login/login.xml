@@ -2,9 +2,10 @@
     <ActionBar title="Login" class="action-bar"></ActionBar>
 
     <StackLayout class="p-20 middle">
-        <Image src="font://&#xf0d5;" width="40" height="40" class="fab"></Image>
+        <!-- <Image src="font://&#xf0d5;" width="40" height="40" class="fab"></Image> -->
         <Button class="googleLogin p-8" tap="{{ onTap }}" backgroundColor="rgb(9, 81, 175)">            
             <FormattedString>
+                <Span text="&#xf1a0;  " class="fab"></Span>
                 <Span text="Sign in with"></Span>
                 <Span text=" Google " color="whitesmoke"></Span>
             </FormattedString>
