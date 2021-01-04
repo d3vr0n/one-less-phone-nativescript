@@ -20,8 +20,14 @@ module.exports = env => {
         "@nativescript/core/ui/frame",
         "@nativescript/core/ui/frame/activity",
         resolve(__dirname, 'app/shared/sms-broadcast.receiver.android'),
-        resolve(__dirname, 'app/shared/one-less-phone.receiver.android')
+        resolve(__dirname, 'app/shared/one-less-phone.receiver.android'),
+        resolve(__dirname, 'app/activities/main.activity.android'),
+        resolve(__dirname, "app/activities/notification.activity.android"),
+        resolve(__dirname, "app/services/notification-intent.service.android")
     ]);
+
+    env.entries = env.entries || {};
+	// env.entries.application = "./application.android";
 
     const platform = env && (env.android && "android" || env.ios && "ios" || env.platform);
     if (!platform) {

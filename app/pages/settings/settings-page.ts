@@ -1,8 +1,13 @@
 import * as applicationModule from "tns-core-modules/application";
 import { android as androidApp } from "tns-core-modules/application";
-import { Observable } from "tns-core-modules/data/observable";
+import { EventData, Observable } from "tns-core-modules/data/observable";
 import { isAndroid } from "tns-core-modules/platform";
 import { Page, NavigatedData } from "tns-core-modules/ui/page";
+
+
+var utils = require("tns-core-modules/utils/utils");
+var jobScheduler = require("../../shared/job-scheduler");
+
 let vm;
 
 export function onNavigatingTo(args: NavigatedData) {
@@ -14,6 +19,8 @@ export function onNavigatingTo(args: NavigatedData) {
     vm.set("isAndroid", isAndroid);
     page.bindingContext = vm;
     // page.actionBar.title = args.context.title;
+
+    vm.set("onTap", onTap);
 }
 
 export function onNavigatedTo(args: NavigatedData) {
@@ -52,4 +59,9 @@ export function onUnloaded() {
         applicationModule.android.unregisterBroadcastReceiver(android.content.Intent.ACTION_BATTERY_CHANGED);
         // << broadcast-receiver-remove-ts
     }
+}
+
+function onTap(args:EventData) {
+    console.log('settings page >', 'button tapped');
+    jobScheduler.scheduleJob(utils.ad.getApplicationContext());
 }
