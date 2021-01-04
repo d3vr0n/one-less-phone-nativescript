@@ -17,15 +17,6 @@ export class CallListPageModel extends Observable {
 
     constructor() {
         super();
-
-        // permissions.requestPermission(android.Manifest.permission.READ_CALL_LOG,
-        //     "RM App needs permission to read your call logs").then(() => {
-        //         this.readCallLogs().then((data: any) => {
-        //             this.callList = data?.data;
-        //         });
-        //     });
-        
-
     }
 
     public init() {
@@ -94,7 +85,6 @@ export class CallListPageModel extends Observable {
     public runUnloaded () {
         if (isAndroid) {
             // >> broadcast-receiver-remove-ts
-            appModule.android.unregisterBroadcastReceiver(android.content.Intent.ACTION_BATTERY_CHANGED);
             // << broadcast-receiver-remove-ts
         }
     }
