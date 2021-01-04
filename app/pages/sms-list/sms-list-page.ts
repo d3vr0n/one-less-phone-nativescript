@@ -8,7 +8,7 @@ import { EventData, Page } from '@nativescript/core';
 import { SmsListPageModel } from './sms-list-view-model.android';
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
 import * as smsSyncSvc from '~/services/sms-sync.service';
-import { isAndroid } from 'tns-core-modules/platform';
+import { isAndroid } from '@nativescript/core/platform';
 
 const firebaseWebApi = require("@nativescript/firebase/app");
 

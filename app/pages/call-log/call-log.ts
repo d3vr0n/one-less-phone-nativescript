@@ -3,7 +3,7 @@ import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
 import { firebase, firestore } from '@nativescript/firebase';
 import { CallListPageModel } from './call-list-view-model.android';
 import { CallLog } from '~/shared/call-log.interface';
-import { isAndroid } from 'tns-core-modules/platform';
+import { isAndroid } from '@nativescript/core/platform';
 
 import * as calllogSyncSvc from '../../services/calllog-sync.service';
 

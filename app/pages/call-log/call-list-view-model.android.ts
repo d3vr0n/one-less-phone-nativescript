@@ -1,8 +1,8 @@
 import { Observable } from '@nativescript/core';
 import * as permissions from 'nativescript-permissions';
 import { CallLog } from '~/shared/call-log.interface';
-import * as appModule from "tns-core-modules/application";
-import { isAndroid } from "tns-core-modules/platform";
+import * as appModule from "@nativescript/core/application";
+import { isAndroid } from "@nativescript/core/platform";
 
 const callLogType = {
     OUTCOMING: android.provider.CallLog.Calls.OUTGOING_TYPE,

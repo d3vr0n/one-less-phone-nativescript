@@ -27,8 +27,8 @@ module.exports = env => {
     ]);
 
     env.entries = env.entries || {};
-    // env.entries.application = "./application.android";
-    
+	// env.entries.application = "./application.android";
+
     const platform = env && (env.android && "android" || env.ios && "ios" || env.platform);
     if (!platform) {
         throw new Error("You need to provide a target platform!");
